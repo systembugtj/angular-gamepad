@@ -1,0 +1,37 @@
+{
+  "name": "angular-gamepad",
+  "description": "Gamepad module for Angular",
+  "version": "0.1.0",
+  "main": [
+    "dist/angular-gamepad.js",
+    "dist/angular-gamepad.d.ts"
+  ],
+  "typescript": {
+    "definition": "dist/angular-gamepad.d.ts"
+  },
+  "license": "Apache",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "library",
+    "test"
+  ],
+  "keywords": [
+    "gamepad",
+    "angular"
+  ],
+  "authors": [{
+    "name": "Michael Putters",
+    "email": "michael.putters@binarygenetics.com"
+  }],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pcx360/angular-gamepad/angular-gamepad.git"
+  },
+  "dependencies": {
+    "angular": "~1.3.3"
+  },
+  "devDependencies": {
+  },
+  "private": true
+}
