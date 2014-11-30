@@ -5,14 +5,29 @@
 /// <reference path="../angularjs/angular.d.ts"/>
 
 declare module ng.gamepad {
-    interface IGamepad {
+    interface IGamepadButtons {
+      A: number;
+      B: number;
+      X: number;
+      Y: number;
+    }
 
+    interface IGamepad {
+      index: number;
+      id: string;
+      mapping: string;
+      buttons: IGamepadButtons;
     }
 
     interface IGamepadProvider extends ng.IServiceProvider {
-
+      isSupported(): boolean;
+      isPollingManual(): boolean;
+      manualPolling(enabled: boolean): IGamepadProvider;
+      getGamepadsCount(): number;
+      getGamepad(index: number): IGamepad;
     }
 
     interface IGamepadController {
+
     }
 }

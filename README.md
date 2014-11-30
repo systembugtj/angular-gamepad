@@ -1,7 +1,7 @@
 
 [angular-gamepad](https://github.com/pcx360/angular-gamepad/) is an [AngularJS](https://angularjs.org/) module written in [TypeScript](http://en.wikipedia.org/wiki/TypeScript). It provides access to gamepad information using the [Gamepad W3C API](https://dvcs.w3.org/hg/gamepad/raw-file/default/gamepad.html). It is designed to work like [angular-hotkeys](https://github.com/chieffancypants/angular-hotkeys/): configuration-centric gamepad shortcuts. There is also a small convenience controller that provides direct access to gamepad information.
 
-**Requirements**: AngularJS 1.3+, Chrome 21+, Firefox 29+, Opera 15+
+**Requirements**: AngularJS 1.3+, Chrome 25+, Firefox 29+, Opera 24+
 
 **Note**: Internet Explorer and Safari do not support the Gamepad API yet
 
