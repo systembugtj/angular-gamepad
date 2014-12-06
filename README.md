@@ -38,37 +38,45 @@ Reference the `ngGamepad` module and configure it.
 ```
 angular.module('myModule', ['ngGamepad'])
   .config(['$gamepadProvider', function($gamepadProvider) {
-
-  }])
-;
-```
-
-## Controller
-
-You can define gamepad shortcuts on controllers.
-
-```
-angular.module('myModule', ['ngGamepad'])
-  .controller('VolumeCtrl', ['$scope', '$gamepad', function($scope, $gamepad) {
-    $scope.volume = 10;
-    $gamepad.add({
-      combination: 'Select+RT',
-      label: 'Increase volume',
-      callback: function() {
-        ++$scope.volume;
-      }
-    });
-
-    $gamepad.bindTo($scope)
-      .add({
-        combination: 'B',
-        label: 'Go back',
-        callback: function() {
-        }
-      })
+    $gamepadProvider
+      .manualPolling(false)
     ;
   }])
 ;
+```
+
+If manual polling is enabled, the application using this module is responsible for calling {{$gamepad.poll()}}, preferably from a {{requestAnimationFrame}} callback.
+
+## Controller
+
+The module provides a simple controller named {{GamepadCtrl}}.
+
+This controller provides access to gamepad properties and is automatically updated whenever a gamepad's state changes.
+
+```
+<div ng-controller="GamepadCtrl">
+  <div ng-repeat="(index, gamepad) in gamepads">
+
+    <h2>#{{gamepad.index}} is {{gamepad.id}} ({{gamepad.mapping}} mapping)</h2>
+
+    <h3>D-Pad</h3>
+    <div ng-repeat="(name, value) in gamepad.DPad">
+      {{name}} = {{value}}
+    </div>
+
+    <h3>Buttons</h3>
+    <div ng-repeat="(name, value) in gamepad.buttons">
+      {{name}} = {{value}}
+    </div>
+
+    <h3>Left Stick</h3>
+    {{gamepad.LS.X}},{{gamepad.LS.Y}}
+
+    <h3>Right Stick</h3>
+    {{gamepad.RS.X}},{{gamepad.RS.Y}}
+
+  </div>
+</div>
 ```
 
 ## Routing

@@ -6,7 +6,7 @@ module ng.gamepad {
   'use strict';
 
   angular.module('ngGamepad', [])
-    .provider('$gamepad', GamepadProvider)
+    .service('$gamepad', GamepadService)
     .controller('GamepadCtrl', GamepadController)
     .run(['$gamepad', function($gamepad) {
       if ($gamepad.isPollingManual() || !$gamepad.isSupported()) {

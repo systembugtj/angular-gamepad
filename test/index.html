@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html ng-app="ngGamepadTest">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>Angular Gamepad Test</title>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 10pt;
+      }
+
+      .gamepad-header {
+        position: fixed;
+        left: 0px; right: 0px;
+        top: 0px; line-height: 24px;
+        background-color: #2f2f2f;
+        color: #dfdfdf;
+        padding-left: 8px;
+      }
+
+      .gamepad-header span {
+        color: #ffffff;
+      }
+
+      .gamepad-properties {
+        position: fixed;
+        width: 580px;
+        padding: 10px;
+        background-color: #f7f7f7;
+        box-shadow: 0px 0px 5px rgba(0,0,0,0.2) inset;
+      }
+
+      .gamepad-properties:nth-child(2) {
+        left: 20px; top: 44px;
+      }
+
+      .gamepad-properties:nth-child(3) {
+        left: 640px; top: 44px;
+      }
+
+      .gamepad-properties:nth-child(4) {
+        left: 20px; top: 424px;
+      }
+
+      .gamepad-properties:nth-child(5) {
+        left: 640px; top: 424px;
+      }
+
+      .gamepad-property-id {
+        position: absolute;
+        left: 4px; top: 2px;
+        font-size: 8pt;
+        color: #2f2f2f;
+        text-shadow: 0px 1px 0px #ffffff;
+      }
+    </style>
+    <script src="../library/angular/angular.js"></script>
+    <script src="../dist/angular-gamepad.js"></script>
+    <script>
+      angular.module('ngGamepadTest', ['ngGamepad']);
+    </script>
+  </head>
+  <body ng-controller="GamepadCtrl">
+    <div class="gamepad-header">
+      Gamepads: <span>{{count}}</span>
+    </div>
+    <div class="gamepad-properties" ng-repeat="(index, gamepad) in gamepads">
+      <div class="gamepad-property-id">
+        {{gamepad.id}}
+      </div>
+      <svg version="1.1" width="580" height="340" viewBox="0 0 1160 680" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <style type="text/css">
+        <![CDATA[
+
+        .player {
+          fill: #567b44;
+          stroke: #5f5f5f; stroke-width: 2;
+        }
+
+        .active>.player {
+          fill: #dffd77;
+        }
+
+        .trigger>path.mask {
+          opacity: 0;
+        }
+
+        .button.pressed>rect {
+          fill: #000000;
+        }
+
+        .button.pressed>ellipse {
+          fill: #000000;
+        }
+
+        .button.pressed>path {
+          fill: #ffffff;
+        }
+
+        .button.bumper.pressed>path {
+          fill: #000000;
+        }
+
+        .dpaddir>path {
+          opacity: 0;
+        }
+
+        .dpaddir.pressed>path {
+          opacity: 1;
+        }
+        ]]>
+        </style>
+        <defs>
+          <path id="player" class="player" d="M0,0v-60a68,60 0 0,0 -68,60z"/>
+          <path id="xboxline" fill="#314f09" d="M-32,-30C20,-27 24,2 38,25C22,2 0,-13 -32,-30z"/>
+
+          <circle id="stickdot" fill="#2f2f2f" r="4"/>
+
+          <radialGradient id="guidegradient" cx="50%" cy="32%" r="125%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="10%" stop-color="#efefef"/>
+            <stop offset="50%" stop-color="#afafaf"/>
+          </radialGradient>
+          <radialGradient id="bumpgradient">
+            <stop offset="0%" stop-color="#000000"/>
+            <stop offset="100%" stop-color="#ffffff"/>
+          </radialGradient>
+          <radialGradient id="bumpgradientwide">
+            <stop offset="0%" stop-color="#4f4f4f"/>
+            <stop offset="100%" stop-color="#ffffff"/>
+          </radialGradient>
+          <radialGradient id="xbuttonbg">
+            <stop offset="0%" stop-color="#253356"/>
+            <stop offset="85%" stop-color="#4453a4"/>
+          </radialGradient>
+          <radialGradient id="ybuttonbg">
+            <stop offset="0%" stop-color="#7a5d11"/>
+            <stop offset="85%" stop-color="#d0a727"/>
+          </radialGradient>
+          <radialGradient id="bbuttonbg">
+            <stop offset="0%" stop-color="#4a1807"/>
+            <stop offset="85%" stop-color="#b53915"/>
+          </radialGradient>
+          <radialGradient id="abuttonbg">
+            <stop offset="0%" stop-color="#48603e"/>
+            <stop offset="85%" stop-color="#5a8953"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Structure -->
+        <g transform="translate(-20,-40)">
+          <path fill="#ffffff" stroke="#000000" stroke-width="5" d="m 1140.95,370.9 c 0,0 -45.682,-136.815 -71.429,-174.57 -34.014,-49.878 -85.436,-106.057 -104.71,-113.992 -19.274,-7.935 -81.633,-9.301 -97.506,-2.5 -15.872,6.802 -67.66,53.145 -107.343,64.48 -39.683,11.335 -272.074,5.668 -303.82,1.134 -31.746,-4.534 -47.753,-5.435 -74.964,-23.572 -27.211,-18.137 -40.781,-40.408 -49.852,-44.942 -9.069,-4.534 -75.498,-3.9 -92.505,2.9 -17.007,6.802 -73.429,60.68 -115.379,129.827 -41.95,69.148 -86.697,221.056 -90.971,256.456 -7.937,65.748 -4.134,119.361 -2.134,130.361 2,11 16.959,86.645 72.929,110.19 72.516,30.507 175.672,-32.14 249.496,-61.058 76.927,-30.134 95.033,-27.595 148.73,-27.595 106.576,0 98.615,-1.133 205.216,-1.133 108.843,0 199.412,57.313 249.299,76.583 49.887,19.27 86.436,33.106 134.055,2.5 47.619,-30.606 66.76,-89.285 73.563,-148.231 C 1170.428,488.792 1140.95,370.9 1140.95,370.9z"/>
+          <g transform="translate(600,105)" fill="none">
+            <!-- Dark gray lines -->
+            <g stroke="#000000">
+              <g transform="translate(0,35)">
+                <path stroke-width="1" d="M-252,0 C -251,2 -144,40 -140,40 C -120,50 120,50 140,40 C 144,40 251,2 252,0"/>
+              </g>
+              <g transform="translate(0,62)">
+                <path stroke-width="2" d="M -252,0 C -251,2 -144,56 -140,56 C -120,70 120,70 140,56 C 144,56 251,2 252,0"/>
+              </g>
+            </g>-->
+            <!-- Light gray lines -->
+            <g stroke-width="1">
+              <g transform="translate(0,84)">
+                <path stroke="#dfdfdf" d="M -450,-13 C -450,-10 -445,-4 -440,-4 C -430,0 -342,-25 -252,0 C -251,2 -144,60 -140,60 C -120,70 120,70 140,60 C 144,60 251,2 252,0 C 342,-25 430,0 440,-4 C 445,-4 450,-10 450,-13"/>
+              </g>
+              <g transform="translate(0,250)">
+                <path stroke="#afafaf" d="M 80,26 L 128,26 A 27,27 0 1,0 128,-28 L 80,-28 C 62,-28 58,-38 56,-40 C 47,-50 32,-63 0,-65 C -32,-63 -47,-50 -56,-40 C -58,-38 -62,-28 -80,-28 L -128,-28 A 27,27 0 1,0 -128,26 L -80,26 C -62,26 -58,38 -56,40 C -47,50 -32,63 0,65 C 32,63 47,50 56,40 C 58,38 62,26 80,26"/>
+              </g>
+            </g>
+          </g>
+        </g>
+
+        <!-- Back line -->
+        <g transform="translate(580,20)">
+          <!-- LT -->
+          <g transform="translate(-282,0) scale(-1,1)" stroke="#000000" stroke-linejoin="round" class="trigger">
+            <path fill="#ffffff" stroke-width="3" d="M0,4C-1,-4 55,-2 70,7 C 75,7 75,40 85,70 L 15,69 L -4,28 C 0,28 0,8 0,4"/>
+            <path id="ltrigger" fill="#000000" class="mask" d="M0,4C-1,-4 55,-2 70,7 C 75,7 75,40 85,70 L 15,69 L -4,28 C 0,28 0,8 0,4" ng-style="{'opacity': gamepad.buttons.L2}"/>
+            <path fill="none" stroke-width="2" d="M0,3C0,8 12,60 15,69"/>
+          </g>
+
+          <!-- Battery -->
+          <g transform="translate(0,20)">
+            <path fill="none" stroke="#000000" stroke-width="5" stroke-linejoint="round" d="M -154,65 C -151,60 -150,2 -124,2 C -56,-2 56,-2 124,2 C 150,2 151,60 154,65"/>
+            <g transform="translate(0,30)">
+              <line stroke="#000000" x1="-150" y1="0" x2="150" y2="0"/>
+              <rect fill="#ffffff" stroke="#000000" x="-62" y="-14" width="124" height="28" rx="12"/>
+            </g>
+          </g>
+
+          <!-- RT -->
+          <g transform="translate(282,0)" stroke="#000000" stroke-linejoin="round" class="trigger">
+            <path fill="#ffffff" stroke-width="3" d="M0,4C-1,-4 55,-2 70,7 C 75,7 75,40 85,70 L 15,69 L -4,28 C 0,28 0,8 0,4"/>
+            <path id="rtrigger" fill="#000000" class="mask" d="M0,4C-1,-4 55,-2 70,7 C 75,7 75,40 85,70 L 15,69 L -4,28 C 0,28 0,8 0,4" ng-style="{'opacity': gamepad.buttons.R2}"/>
+            <path fill="none" stroke-width="2" d="M0,3C0,8 12,60 15,69"/>
+          </g>
+        </g>
+
+        <!-- Top line -->
+        <g transform="translate(580,150)">
+          <!-- LB -->
+          <g id="lbumper" transform="translate(-350,-30)" class="button bumper" ng-class="{'pressed': gamepad.buttons.L1}">
+            <path fill="#ffffff" stroke="#000000" stroke-width="3" d="M-100,8 C -108,4 -108,-16 -104,-18 C -80,-32 75,-24 84,-16 C 104,4 104,8 104,14 C 100,8 10,-4 -98,8z" transform="scale(-1,1)"/>
+          </g>
+
+          <!-- Sync -->
+          <g transform="translate(-124,14) rotate(10)">
+            <rect x="-15" y="-8" width="30" height="16" rx="6" stroke="#000000" fill="none"/>
+          </g>
+
+          <!-- Connector -->
+          <g transform="translate(0,20)">
+            <path fill="#000000" d="M-88,-6C-88,-9 -89,-12 -77,-12 L77,-12C89,-12 88,-9 88,-6C88,0 81,12 75,12L-75,12C-81,12 -88,0 -88,-6"/>
+          </g>
+
+          <!-- RB -->
+          <g id="rbumper" transform="translate(350,-30)" class="button bumper" ng-class="{'pressed': gamepad.buttons.R1}">
+            <path fill="#ffffff" stroke="#000000" stroke-width="3" d="M-100,8 C -108,4 -108,-16 -104,-18 C -80,-32 75,-24 84,-16 C 104,4 104,8 104,14 C 100,8 10,-4 -98,8z"/>
+          </g>
+        </g>
+
+        <!-- Middle line -->
+        <g transform="translate(580,315)">
+          <!-- LS -->
+          <g id="lstickbutton" transform="translate(-350,-25)" class="button" ng-class="{'pressed': gamepad.buttons.LS}">
+            <ellipse fill="url(#bumpgradientwide)" rx="128" ry="96"/>
+            <g transform="translate(-1,8) scale(-1,1)">
+              <ellipse fill="#3f3f3f" stroke="#000000" stroke-width="2" rx="82" ry="60"/>
+              <g transform="translate(2,18) scale(-1,1)">
+                <g id="lstick" ng-attr-transform="{{'translate(' + (gamepad.LS.X * 16) + ',' + (gamepad.LS.Y * 16) + ')'}}">
+                  <ellipse fill="#5f5f5f" stroke="#000000" stroke-width="3" rx="75" ry="60"/>
+                  <g transform="translate(1,3)">
+                    <ellipse fill="#4f4f4f" rx="57" ry="45"/>
+                    <use xlink:href="#stickdot" transform="translate(48,0)"/>
+                    <use xlink:href="#stickdot" transform="translate(-48,0)"/>
+                    <use xlink:href="#stickdot" transform="translate(0,38)"/>
+                    <use xlink:href="#stickdot" transform="translate(0,-38)"/>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+
+          <!-- Select -->
+          <g id="select" transform="translate(-120,2)" class="button" ng-class="{'pressed': gamepad.buttons.Select}">
+            <rect x="-28" y="-24" width="56" height="42" rx="20" stroke="#000000" stroke-width="3" fill="#ffffff"/>
+          </g>
+
+          <!-- Guide -->
+          <g id="guide">
+            <g id="player1" ng-class="{'active': gamepad.index === 0}">
+              <path class="player" d="M0,0v-60a68,60 0 0,0 -68,60z"/>
+            </g>
+            <g id="player2" ng-class="{'active': gamepad.index === 1}" transform="scale(-1,1)">
+              <path class="player" d="M0,0v-60a68,60 0 0,0 -68,60z"/>
+            </g>
+            <g id="player3" ng-class="{'active': gamepad.index === 2}" transform="scale(-1,-1)">
+              <path class="player" d="M0,0v-60a68,60 0 0,0 -68,60z"/>
+            </g>
+            <g id="player4" ng-class="{'active': gamepad.index === 3}" transform="scale(1,-1)">
+              <path class="player" d="M0,0v-60a68,60 0 0,0 -68,60z"/>
+            </g>
+            <ellipse rx="56" ry="48" fill="url(#guidegradient)" stroke="#3f3f3f" stroke-width="2"/>
+            <use xlink:href="#xboxline"/>
+            <use xlink:href="#xboxline" transform="scale(-1,1)"/>
+          </g>
+
+          <!-- Start -->
+          <g id="start" transform="translate(120,2)" class="button" ng-class="{'pressed': gamepad.buttons.Start}">
+            <rect x="-28" y="-24" width="56" height="42" rx="20" stroke="#000000" stroke-width="3" fill="#ffffff"/>
+          </g>
+
+          <!-- Buttons -->
+          <g transform="translate(350,-15)" stroke="#000000" stroke-width="6">
+            <!-- X -->
+            <g id="xbutton" transform="translate(-95,2)" class="button" ng-class="{'pressed': gamepad.buttons.X}">
+              <ellipse rx="45" ry="40" fill="url(#xbuttonbg)"/>
+              <path transform="translate(0,2)" stroke="none" fill="#5368c1" d="M-25,-23L-10,0L-25,23L-7,23L0,11L7,23L25,23L10,0L25,-23L7,-23L0,-11L-7,-23z"/>
+            </g>
+            <!-- Y -->
+            <g id="ybutton" transform="translate(0,-70)" class="button" ng-class="{'pressed': gamepad.buttons.Y}">
+              <ellipse rx="45" ry="40" fill="url(#ybuttonbg)"/>
+              <path transform="translate(1,1)" stroke="none" fill="#e5b821" d="M-22,-23L-8,0L-8,23L8,23L8,0L22,-23L7,-23L0,-10L-7,-23z"/>
+            </g>
+            <!-- A -->
+            <g id="abutton" transform="translate(0,70)" class="button" ng-class="{'pressed': gamepad.buttons.A}">
+              <ellipse rx="45" ry="40" fill="url(#abuttonbg)"/>
+              <path transform="translate(1,1)" stroke="none" fill="#73a46c" d="M-10,-23L-25,23L-10,23L-7,13L7,13L10,23L25,23L10,-23L-10,-23zM0,-11L5,4L-5,4 z"/>
+            </g>
+            <!-- B -->
+            <g id="bbutton" transform="translate(95,-5)" class="button" ng-class="{'pressed': gamepad.buttons.B}">
+              <ellipse rx="45" ry="40" fill="url(#bbuttonbg)"/>
+              <path transform="translate(3,2)" stroke="none" fill="#bb4320" d="M -25,-23 L -25,23 L 12,23 C 30,23 28,-2 18,-2 C 30,-2 25,-23 10,-23 L -25,-23 z M -12,-14 L 5,-14 C 15,-14 15,-5 5,-5 L -12,-5 z M -12,3 L 5,3 C 15,3 15,12 5,12 L -12,12 z"/>
+            </g>
+          </g>
+        </g>
+
+        <!-- Bottom line -->
+        <g transform="translate(580,485)">
+          <!-- D-pad -->
+          <g transform="translate(-174,0)">
+            <ellipse fill="url(#bumpgradient)" rx="130" ry="105"/>
+            <g transform="translate(-2,16)">
+              <ellipse fill="#ffffff" stroke="#000000" stroke-width="4" rx="110" ry="91"/>
+              <g transform="translate(-1,3)">
+                <ellipse fill="#4f4f4f" stroke="#000000" stroke-width="2" rx="92" ry="76"/>
+                <g transform="translate(-1,2)">
+                  <ellipse fill="#4f4f4f" stroke="#000000" stroke-width="2" rx="86" ry="70"/>
+                  <path fill="#4f4f4f" stroke="#000000" stroke-width="2" stroke-linecap="round" d="M-83,-20C-35,-20 -30,-42 -30,-66C-15,-71 15,-71 30,-66C30,-42 35,-20 83,-20C87,-10 87,10 83,20C35,20 30,42 30,66C15,71 -15,71 -30,66C-30,42 -35,20 -83,20C-87,10 -87,-10 -83,-20"/>
+                  <g id="dpadl" class="dpaddir" ng-class="{'pressed': gamepad.DPad.Left}">
+                    <path fill="#000000" stroke-linecap="round" d="M-83,-20C-35,-20 -30,-42 -29,-66C-29,-56 -20,-10 0,0C-20,10 -29,56 -29,66C-30,42 -35,20 -83,20C-87,10 -87,-10 -83,-20"/>
+                  </g>
+                  <g id="dpadr" class="dpaddir" ng-class="{'pressed': gamepad.DPad.Right}" transform="scale(-1,1)">
+                    <path fill="#000000" stroke-linecap="round" d="M-83,-20C-35,-20 -30,-42 -29,-66C-29,-56 -20,-10 0,0C-20,10 -29,56 -29,66C-30,42 -35,20 -83,20C-87,10 -87,-10 -83,-20"/>
+                  </g>
+                  <g id="dpadt" class="dpaddir" ng-class="{'pressed': gamepad.DPad.Up}">
+                    <path fill="#000000" stroke-linecap="round" d="M-30,-66C-15,-71 15,-71 30,-66C30,-42 35,-20 83,-19C75,-19 20,-10 0,0C-20,-10 -75,-19 -83,-19C-35,-20 -30,-42 -29,-66"/>
+                  </g>
+                  <g id="dpadb" class="dpaddir" ng-class="{'pressed': gamepad.DPad.Down}" transform="scale(1,-1)">
+                    <path fill="#000000" stroke-linecap="round" d="M-30,-66C-15,-71 15,-71 30,-66C30,-42 35,-20 83,-19C75,-19 20,-10 0,0C-20,-10 -75,-19 -83,-19C-35,-20 -30,-42 -29,-66"/>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+
+          <!-- RS -->
+          <g id="rstickbutton" transform="translate(160,0)" class="button" ng-class="{'pressed': gamepad.buttons.RS}">
+            <ellipse fill="url(#bumpgradientwide)" rx="120" ry="92"/>
+            <g transform="translate(1,14)">
+              <ellipse fill="#3f3f3f" stroke="#000000" stroke-width="2" rx="82" ry="60"/>
+              <g transform="translate(2,18)">
+                <g id="rstick" ng-attr-transform="{{'translate(' + (gamepad.RS.X * 16) + ',' + (gamepad.RS.Y * 16) + ')'}}">
+                  <ellipse fill="#5f5f5f" stroke="#000000" stroke-width="3" rx="75" ry="60"/>
+                  <g transform="translate(1,3)">
+                    <ellipse fill="#4f4f4f" rx="57" ry="45"/>
+                    <use xlink:href="#stickdot" transform="translate(48,0)"/>
+                    <use xlink:href="#stickdot" transform="translate(-48,0)"/>
+                    <use xlink:href="#stickdot" transform="translate(0,38)"/>
+                    <use xlink:href="#stickdot" transform="translate(0,-38)"/>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </body>
+</html>

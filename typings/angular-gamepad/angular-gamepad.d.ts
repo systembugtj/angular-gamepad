@@ -10,6 +10,27 @@ declare module ng.gamepad {
       B: number;
       X: number;
       Y: number;
+      L1: number;
+      L2: number;
+      LS: number;
+      R1: number;
+      R2: number;
+      RS: number;
+      Select: number;
+      Start: number;
+      Guide: number;
+    }
+
+    interface IGamepadAxis {
+      X: number;
+      Y: number;
+    }
+
+    interface IGamepadDirectionalPad {
+      Left: number;
+      Right: number;
+      Up: number;
+      Down: number;
     }
 
     interface IGamepad {
@@ -17,14 +38,22 @@ declare module ng.gamepad {
       id: string;
       mapping: string;
       buttons: IGamepadButtons;
+      DPad: IGamepadDirectionalPad;
+      LS: IGamepadAxis;
+      RS: IGamepadAxis;
     }
 
-    interface IGamepadProvider extends ng.IServiceProvider {
+    interface IGamepadService extends ng.IServiceProvider {
       isSupported(): boolean;
       isPollingManual(): boolean;
-      manualPolling(enabled: boolean): IGamepadProvider;
-      getGamepadsCount(): number;
+      manualPolling(enabled: boolean): IGamepadService;
+      getGamepadCount(): number;
       getGamepad(index: number): IGamepad;
+    }
+
+    interface IGamepadScope extends ng.IScope {
+      count: number;
+      gamepads: {[index: number]: IGamepad};
     }
 
     interface IGamepadController {

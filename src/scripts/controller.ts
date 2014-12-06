@@ -8,29 +8,30 @@ module ng.gamepad {
    * @ngdoc controller
    */
   export class GamepadController implements IGamepadController {
-    gamepads: IGamepad[];
-
     /**
      * Class constructor
      */
-    static $inject = ['$rootScope'];
-    constructor($rootScope: ng.IScope) {
-      this.gamepads = [];
+    static $inject = ['$scope', '$gamepad'];
+    constructor($scope: IGamepadScope, $gamepad: IGamepadService) {
+      $scope.count = 0;
+      $scope.gamepads = {};
 
-      $rootScope.$on('gamepad:connected', (event: ng.IAngularEvent, gamepad: IGamepad) => {
-        while (this.gamepads.length <= gamepad.index) {
-          this.gamepads.push();
-        }
-
-        console.log('gamepad connected at index ' + gamepad.index);
+      $scope.$on('gamepad:connected', (event: ng.IAngularEvent, gamepad: IGamepad) => {
+        $scope.gamepads[gamepad.index] = angular.copy(gamepad);
+        $scope.count = $gamepad.getGamepadCount();
+        $scope.$apply();
       });
 
-      $rootScope.$on('gamepad:updated', (event: ng.IAngularEvent, gamepad: IGamepad) => {
-        console.log('gamepad updated at index ' + gamepad.index);
+      $scope.$on('gamepad:updated', (event: ng.IAngularEvent, gamepad: IGamepad) => {
+        $scope.gamepads[gamepad.index] = angular.copy(gamepad);
+        $scope.count = $gamepad.getGamepadCount();
+        $scope.$apply();
       });
 
-      $rootScope.$on('gamepad:disconnected', (event: ng.IAngularEvent, index: number) => {
-        console.log('gamepad disconnected at index ' + index);
+      $scope.$on('gamepad:disconnected', (event: ng.IAngularEvent, index: number) => {
+        delete $scope.gamepads[index];
+        $scope.count = $gamepad.getGamepadCount();
+        $scope.$apply();
       });
     }
   }
