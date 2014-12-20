@@ -51,12 +51,12 @@ module.exports = function (grunt) {
 			}
     },
     watch: {
+      options: {
+        livereload: true
+      },
       ts: {
         files: ['<%= yeoman.lib %>/scripts/{,*}/*.ts'],
-        tasks: ['typescript'],
-        options: {
-          liverelease: '<%= connect.options.livereload %>'
-        }
+        tasks: ['typescript']
       },
       js: {
         files: ['src/**/*.js'],
@@ -68,16 +68,6 @@ module.exports = function (grunt) {
       },
       gruntfile: {
         files: ['Gruntfile.js']
-      },
-      livereload: {
-        options: {
-          livereload: true
-        },
-        files: [
-          'Gruntfile.js',
-          'src/**/*'
-        ],
-        tasks: ['default']
       }
 		},
 		typescript: {

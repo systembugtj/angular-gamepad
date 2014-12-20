@@ -7,7 +7,7 @@
 
 # License
 
-angular-gamepad is available under an [MIT license](https://github.com/pcx360/angular-gamepad/blob/master/LICENSE).
+angular-gamepad is available under an [Apache license](https://github.com/pcx360/angular-gamepad/blob/master/LICENSE).
 
 # Installation
 
