@@ -44,11 +44,11 @@ angular.module('myModule', ['ngGamepad'])
 ;
 ```
 
-If manual polling is enabled, the application using this module is responsible for calling {{$gamepad.poll()}}, preferably from a {{requestAnimationFrame}} callback.
+If manual polling is enabled, the application using this module is responsible for calling `$gamepad.poll()`, preferably from a `requestAnimationFrame` callback.
 
 ### Controller
 
-The module provides a simple controller named {{GamepadCtrl}}.
+The module provides a simple controller named `GamepadCtrl`.
 
 This controller provides access to gamepad properties and is automatically updated whenever a gamepad's state changes.
 
