@@ -64,29 +64,23 @@ module.exports = function (grunt) {
       },
       jsTest: {
         files: ['test/**/*.js'],
-        tasks: ['newer:jshint:test', 'karma']
+        tasks: ['newer:jshint:test']
       },
       gruntfile: {
         files: ['Gruntfile.js']
       }
-		},
-		typescript: {
-			base: {
-				src: ['<%= yeoman.lib %>/scripts/**/*.ts'],
-				dest: '.tmp/scripts/out.js',
-				options: {
-					target: 'es5',
-					basePath: '<%= yeoman.lib %>/scripts',
-					sourceMap: true,
-					declaration: true,
-					watch: false
-				}
-			}
-		},
-    karma: {
-      unit: {
-        configFile: 'test/karma.conf.js',
-        singleRun: true
+    },
+    typescript: {
+      base: {
+        src: ['<%= yeoman.lib %>/scripts/**/*.ts'],
+        dest: '.tmp/scripts/out.js',
+        options: {
+          target: 'es5',
+          basePath: '<%= yeoman.lib %>/scripts',
+          sourceMap: true,
+          declaration: true,
+          watch: false
+        }
       }
     }
   });

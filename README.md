@@ -1,6 +1,8 @@
 angular-gamepad
 ===============
-[![License](https://img.shields.io/badge/license-Apache_2.0-red.svg?style=flat-square)](https://github.com/pcx360/angular-gamepad/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/License-Apache_2.0-red.svg?style=flat-square)](https://github.com/pcx360/angular-gamepad/blob/master/LICENSE)
+[![Language](https://img.shield.io/badge/Language-TypeScript-red.svg?style=flat-square)](http://www.typescriptlang.org/)
+[![AngularJS](https://img.shields.io/badge/AngularJS-1.3.8-green.svg?style=flat-square)](https://angularjs.org/)
 
 [angular-gamepad](https://github.com/pcx360/angular-gamepad/) is an [AngularJS](https://angularjs.org/) module written in [TypeScript](http://en.wikipedia.org/wiki/TypeScript). It provides access to gamepad information using the [Gamepad W3C API](https://dvcs.w3.org/hg/gamepad/raw-file/default/gamepad.html). It is designed to work like [angular-hotkeys](https://github.com/chieffancypants/angular-hotkeys/): configuration-centric gamepad shortcuts. There is also a small convenience controller that provides direct access to gamepad information.
 
