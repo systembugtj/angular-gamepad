@@ -1,7 +1,0 @@
-.DS_Store
-.sass-cache/
-.tmp/
-dist/
-library/
-node_modules/
-typings/
