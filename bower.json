@@ -2,9 +2,7 @@
   "name": "angular-gamepad",
   "description": "Gamepad module for Angular",
   "version": "0.1.0",
-  "main": [
-    "dist/angular-gamepad.min.js"
-  ],
+  "main": "dist/angular-gamepad.min.js",
   "typescript": {
     "definition": "dist/angular-gamepad.d.ts"
   },

@@ -2,7 +2,7 @@ angular-gamepad
 ===============
 [![License](https://img.shields.io/badge/License-Apache_2.0-red.svg?style=flat-square)](https://github.com/pcx360/angular-gamepad/blob/master/LICENSE)
 [![Language](https://img.shields.io/badge/Language-TypeScript-red.svg?style=flat-square)](http://www.typescriptlang.org/)
-[![Bower](https://img.shields.io/badge/Bower-n%2Fa-orange.svg?style=flat-square)](https://github.com/pcx360/bower-angular-gamepad)
+[![Bower](https://img.shields.io/badge/Bower-0.1.0-green.svg?style=flat-square)](https://github.com/pcx360/angular-gamepad)
 
 [angular-gamepad](https://github.com/pcx360/angular-gamepad/) is an [AngularJS](https://angularjs.org/) module written in [TypeScript](http://en.wikipedia.org/wiki/TypeScript). It provides access to gamepad information using the [Gamepad W3C API](https://dvcs.w3.org/hg/gamepad/raw-file/default/gamepad.html). It is designed to work like [angular-hotkeys](https://github.com/chieffancypants/angular-hotkeys/): configuration-centric gamepad shortcuts. There is also a small convenience controller that provides direct access to gamepad information.
 
@@ -90,6 +90,8 @@ This controller provides access to gamepad properties and is automatically updat
 
 ### Routing
 
+Warning: this feature is not available yet.
+
 You can define gamepad shortcuts on routes. They will be (un)bound as you navigate the application.
 
 ```
@@ -109,6 +111,8 @@ angular.module('myModule', ['ngRoute', 'ngGamepad'])
 ```
 
 ### Directive
+
+Warning: this feature is not available yet.
 
 You can define gamepad shortcuts on directives.
 
