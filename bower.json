@@ -3,8 +3,7 @@
   "description": "Gamepad module for Angular",
   "version": "0.1.0",
   "main": [
-    "dist/angular-gamepad.js",
-    "dist/angular-gamepad.d.ts"
+    "dist/angular-gamepad.min.js"
   ],
   "typescript": {
     "definition": "dist/angular-gamepad.d.ts"
@@ -26,12 +25,11 @@
   }],
   "repository": {
     "type": "git",
-    "url": "git://github.com/pcx360/angular-gamepad/angular-gamepad.git"
+    "url": "git://github.com/pcx360/angular-gamepad.git"
   },
   "dependencies": {
     "angular": "~1.3.8"
   },
   "devDependencies": {
-  },
-  "private": true
+  }
 }
